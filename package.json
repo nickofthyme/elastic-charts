@@ -1,55 +1,44 @@
 {
-  "name": "@elastic/charts",
-  "description": "Elastic-Charts data visualization library",
-  "version": "18.3.0",
+  "name": "elastic-charts",
+  "description": "Elastic-Charts mono",
   "author": "Marco Vettorello <marco.vettorello@elastic.co>",
   "license": "Apache-2.0",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
   "repository": "git@github.com:elastic/elastic-charts.git",
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "cz": "git-cz",
     "build": "yarn build:clean && yarn build:ts && yarn build:check && yarn build:sass && yarn autoprefix:css && yarn concat:sass",
-    "build:clean": "echo 'Cleaning dist...' && rm -rf ./dist",
-    "build:ts": "echo 'Compiling...' && tsc -p ./tsconfig.lib.json",
-    "build:sass": "echo 'Building sass...' && node-sass src/theme_light.scss dist/theme_light.css --output-style compressed && node-sass src/theme_dark.scss dist/theme_dark.css --output-style compressed && node-sass src/theme_only_light.scss dist/theme_only_light.css --output-style compressed && node-sass src/theme_only_dark.scss dist/theme_only_dark.css --output-style compressed",
-    "build:check": "echo 'Type checking dist...' && tsc -p ./tsconfig.lib-check.json",
-    "build:watch": "echo 'Watching build...' && yarn build:clean && yarn build:sass && yarn autoprefix:css && yarn concat:sass && yarn build:ts -w ",
-    "concat:sass": "echo 'Concat SASS...' && node scripts/concat_sass.js",
-    "autoprefix:css": "echo 'Autoprefixing...' && yarn postcss dist/*.css --no-map --use autoprefixer -d dist",
-    "start": "yarn storybook",
-    "storybook": "start-storybook -p 9001 -c .storybook --ci",
-    "start-docs": "start-storybook -p 8001 -c .storybook-docs --ci",
-    "storybook:build": "rm -rf .out && build-storybook -c .storybook -o .out",
+    "build:clean": "echo 'Cleaning dist...' && rm -rf lib/dist",
+    "build:ts": "echo 'Compiling...' && tsc -p lib/tsconfig.json",
+    "build:sass": "echo 'Building sass...' && node-sass lib/src/theme_light.scss lib/dist/theme_light.css --output-style compressed && node-sass lib/src/theme_dark.scss lib/dist/theme_dark.css --output-style compressed && node-sass lib/src/theme_only_light.scss lib/dist/theme_only_light.css --output-style compressed && node-sass lib/src/theme_only_dark.scss lib/dist/theme_only_dark.css --output-style compressed",
+    "build:check": "echo 'Type checking dist...' && tsc -p lib/tsconfig.check.json",
+    "build:watch": "echo 'Watching build...' && yarn build:clean && yarn build:sass && yarn autoprefix:css && yarn concat:sass && yarn build:ts -w",
+    "concat:sass": "echo 'Concat SASS...' && cd lib && node scripts/concat_sass.js",
+    "autoprefix:css": "echo 'Autoprefixing...' && yarn postcss lib/dist/*.css --no-map --use autoprefixer -d lib/dist",
+    "start": "lerna run --scope elastic-charts-storybook start --stream",
+    "start:pg": "lerna run --scope playground start",
+    "start:pg:ie": "lerna run --scope playground start:ie",
+    "start:docs": "lerna run --scope docs start",
     "lint": "NODE_ENV=production eslint --ext .tsx,.ts,.js .",
     "lint:fix": "yarn lint --fix",
     "test": "jest --verbose --config jest.config.js",
-    "pq": "pretty-quick",
     "test:tz": "yarn test:tz-utc && yarn test:tz-ny && yarn test:tz-jp",
     "test:tz-utc": "TZ=UTC jest --verbose --config=jest.tz.config.js",
     "test:tz-ny": "TZ=America/New_York jest --verbose --config=jest.tz.config.js",
     "test:tz-jp": "TZ=Asia/Tokyo jest --verbose --config=jest.tz.config.js",
-    "watch": "yarn test --watch",
-    "semantic-release": "semantic-release",
-    "typecheck:src": "yarn build:ts --noEmit",
-    "typecheck:all": "tsc -p ./tsconfig.json --noEmit",
-    "playground": "cd .playground && webpack-dev-server",
-    "playground:ie": "cd .playground && webpack-dev-server --host=0.0.0.0 --disable-host-check --useLocalIp",
-    "jest:integration": "rm -rf ./integration/tests/__image_snapshots__/__diff_output__ && TZ=UTC JEST_PUPPETEER_CONFIG=integration/jest_puppeteer.config.js jest --verbose --rootDir=integration -c=integration/jest.config.js --runInBand",
+    "test:visual": "rm -rf ./integration/tests/__image_snapshots__/__diff_output__ && TZ=UTC JEST_PUPPETEER_CONFIG=integration/jest_puppeteer.config.js jest --verbose --rootDir=integration -c=integration/jest.config.js --runInBand",
     "test:browsers": "cd .playground && jest -c=../browsers/jest.config.js ../browsers/browsers.test.ts",
+    "pq": "pretty-quick",
+    "semantic-release": "semantic-release",
+    "typecheck": "tsc -p ./tsconfig.json --noEmit",
+    "typecheck:lib": "cd ./lib && yarn typecheck",
     "ts:prune": "ts-prune",
     "backport": "backport"
   },
-  "files": [
-    "dist/**/*",
-    "FAQ.md",
-    "LICENSE.txt",
-    "NOTICE.txt",
-    "yarn.lock"
+  "workspaces": [
+    "lib",
+    "playground",
+    "storybook",
+    "docs"
   ],
   "devDependencies": {
     "@babel/core": "^7.8.3",
@@ -134,6 +123,7 @@
     "jest-matcher-utils": "^24.9.0",
     "jest-puppeteer": "^4.3.0",
     "jest-puppeteer-docker": "^1.2.0",
+    "lerna": "^3.20.2",
     "lodash": "^4.17.15",
     "lorem-ipsum": "^2.0.3",
     "luxon": "^1.11.3",
@@ -188,17 +178,21 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
+  "resolutions": {
+    "**/@types/react": "^16.9.19",
+    "**/typescript": "3.7.2",
+    "**/react-dom": "^16.12.0",
+    "**/react": "^16.12.0"
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "private": true,
   "engines": {
     "node": ">=10",
-    "yarn": "^1.10.1"
-  },
-  "browserslist": [
-    "last 2 versions",
-    "ie 11"
-  ]
+    "yarn": "^1.10.1",
+    "npm": "please-use-yarn"
+  }
 }

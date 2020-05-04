@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "noUnusedLocals": true,
-    "removeComments": true
-  },
-  "extends": "./tsconfig",
-  "include": ["src/**/*"],
-  "exclude": ["**/*.test.*", "**/__mocks__", "src/mocks"]
-}

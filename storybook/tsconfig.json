@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig",
+  "compilerOptions": {
+    "rootDir": "./"
+  },
+  "references": [
+    { "path": "../lib" }
+  ]
+}

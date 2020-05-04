@@ -1,9 +1,3 @@
-# Force include
-!/.storybook
-!/.storybook-docs
-!/.playground
-
-# Ignore
 /wiki
 /node_modules
 /dist

@@ -1,0 +1,12 @@
+{
+  "lerna": "3.20.2",
+  "packages": [
+    "lib",
+    "playground",
+    "storybook",
+    "docs"
+  ],
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "version": "independent"
+}

@@ -15,7 +15,7 @@ coverage/
 .DS_Store
 .eslintcache
 .yo-rc.json
-npm-debug.log
+*-debug.log
 yarn-error.log
 ./playground/playground.tsx
 

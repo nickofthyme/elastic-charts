@@ -1,0 +1,40 @@
+- git mv .storybook storybook
+- git mv stories storybook/stories
+- git mv .playground playground
+- git mv docs .storybook-docs/static
+- git mv .storybook-docs docs
+- git mv src lib/src
+- mkdir -p tests/jest
+- git mv browsers tests/browsers
+- git mv integration tests/visual
+- mkdir lib/scripts
+- git mv scripts/concat_sass.js lib/scripts/concat_sass.js
+- git mv scripts/**/* tests/jest
+- rm -f scripts
+
+- Replace all util imports in storybook /from '.*src.*';/
+- Replace all remaining ../src imports in storybook /from '.*src.*';/
+- Replace import { SeededDataGenerator } from '@elastic/charts'; with import { SeededDataGenerator } from '@elastic/charts/dist/src/mocks/utils';
+
+
+
+
+------- TODO -------
+- fix mocks and remove from output
+- git mv lib/src/mocks lib/mocks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

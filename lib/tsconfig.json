@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./dist/",
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "composite": true
+  },
+  "extends": "../tsconfig",
+  "exclude": ["./**/*.test.*", "./**/__mocks__", "scripts"]
+}

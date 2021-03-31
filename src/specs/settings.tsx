@@ -293,6 +293,10 @@ export interface LegendActionProps {
    * Resolved color of given series
    */
   color: string;
+  /**
+   * Legend series is toggled off. Lets user decide to disable action.
+   */
+  disabled: boolean;
 }
 /**
  * Legend action component used to render actions next to legend items

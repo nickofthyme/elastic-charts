@@ -45,7 +45,7 @@ import {
 import * as TestDatasets from '../../src/utils/data_samples/test_dataset';
 import { getPositionKnob, getEuiPopoverPositionKnob } from '../utils/knobs';
 
-const getAction = (anchorPosition: PopoverAnchorPosition): LegendAction => ({ series, label }) => {
+const getAction = (anchorPosition: PopoverAnchorPosition): LegendAction => ({ series, label, disabled }) => {
   const [popoverOpen, setPopoverOpen] = useState(false);
 
   const getPanels = (series: XYChartSeriesIdentifier[]): EuiContextMenuPanelDescriptor[] => [
@@ -99,8 +99,10 @@ const getAction = (anchorPosition: PopoverAnchorPosition): LegendAction => ({ se
 
   const Button = (
     <button
+      disabled={disabled}
       type="button"
       style={{
+        cursor: disabled ? 'not-allowed' : 'pointer',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

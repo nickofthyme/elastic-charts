@@ -216,7 +216,7 @@ export class LegendListItem extends Component<LegendItemProps, LegendItemState> 
           {extra && !isSeriesHidden && renderExtra(extra)}
           {Action && (
             <div className="echLegendItem__action">
-              <Action series={seriesIdentifiers} color={color} label={label} />
+              <Action series={seriesIdentifiers} color={color} label={label} disabled={isSeriesHidden ?? false} />
             </div>
           )}
         </li>

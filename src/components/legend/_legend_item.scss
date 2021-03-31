@@ -83,10 +83,6 @@ $legendItemHeight: #{$euiFontSizeXS * $euiLineHeight};
     margin-left: $euiSizeXS;
     font-feature-settings: 'tnum';
     letter-spacing: unset;
-
-    &--hidden {
-      display: none;
-    }
   }
 
   &--vertical {

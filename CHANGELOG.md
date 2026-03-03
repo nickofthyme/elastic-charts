@@ -1,3 +1,11 @@
+# [71.3.0](https://github.com/elastic/elastic-charts/compare/v71.2.0...v71.3.0) (2026-03-03)
+
+
+### Features
+
+* **metric:** add secondary badge text color ([#2799](https://github.com/elastic/elastic-charts/issues/2799)) ([5c765e8](https://github.com/elastic/elastic-charts/commit/5c765e81b3910ef613b84e2e06885b447e5ea820))
+* **metric:** expose medium (500) title font-weight in Metric chart ([#2792](https://github.com/elastic/elastic-charts/issues/2792)) ([c582e81](https://github.com/elastic/elastic-charts/commit/c582e816c68cb370b0c80774acdf44a5dd583924))
+
 # [71.2.0](https://github.com/elastic/elastic-charts/compare/v71.1.2...v71.2.0) (2026-02-26)
 
 

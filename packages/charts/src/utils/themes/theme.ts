@@ -400,19 +400,15 @@ export interface LegendLabelOptions {
    * Sets maxlines allowable before truncating
    *
    * Setting value to `0` will _never_ truncate the text
-   *
-   * @defaultValue 1
    */
-  maxLines?: number;
+  maxLines: number;
   /**
    * Sets widthLimit allowable before truncating (unit: px)
    * Only applicable if the list layout is chosen for the top and bottom positions
    *
    * Setting value to `0` will _never_ truncate the text
-   *
-   * @defaultValue 250
    */
-  widthLimit?: number;
+  widthLimit: number;
 }
 
 /** @public */

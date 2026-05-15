@@ -1,3 +1,5 @@
+## [71.6.1](https://github.com/elastic/elastic-charts/compare/v71.6.0...v71.6.1) (2026-05-15)
+
 # [71.6.0](https://github.com/elastic/elastic-charts/compare/v71.5.2...v71.6.0) (2026-05-11)
 
 
